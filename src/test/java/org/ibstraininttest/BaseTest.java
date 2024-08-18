@@ -9,6 +9,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+/**
+ * @author Vikor_Mikhaylov
+ * Базовый класс
+ */
 public class BaseTest {
 
     private static WebDriver driver;

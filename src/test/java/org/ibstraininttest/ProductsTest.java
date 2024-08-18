@@ -9,6 +9,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+/**
+ * @author Vikor_Mikhaylov
+ *  ласс дл€ прогонки параметризированного теста дл€ проверки корректности добавлени€ товара
+ */
 public class ProductsTest extends BaseTest {
 
     @ParameterizedTest
@@ -22,6 +26,7 @@ public class ProductsTest extends BaseTest {
 
         WebDriver driver = BaseTest.getDriver();
         WebDriverWait explicitWait =  BaseTest.getExplicitWait();
+
 //        ќткрытие выпадающего списка "ѕесочница"
         WebElement btnSendBox = driver.findElement(By.id("navbarDropdown"));
         btnSendBox.click();
@@ -29,7 +34,7 @@ public class ProductsTest extends BaseTest {
                 "navbarDropdown", btnSendBox.getAttribute("id"),
                 "Ќе открылс€ выпадающий список ѕесочницы");
 
-        waitingToSee();
+        waitToSee();
 
 //         лик по полю "“овары"
         WebElement itemProducts = driver.findElement(By.xpath("//a[text() ='“овары']"));
@@ -47,7 +52,7 @@ public class ProductsTest extends BaseTest {
         WebElement btnAddProduct = driver.findElement(By.xpath("//button[text() = 'ƒобавить']"));
         btnAddProduct.click();
 
-        waitingToSee();
+        waitToSee();
 
 //        ѕроверка открыти€ окна добавлени€ товара
         WebElement titleAddProduct = driver.findElement(By.id("editModalLabel"));
@@ -63,9 +68,7 @@ public class ProductsTest extends BaseTest {
 
         fieldFruitName.sendKeys(fruitName);
         selectType.sendKeys(type);
-        if (isExotic) {
-            checkBoxExotic.click();
-        }
+        if (isExotic) {checkBoxExotic.click();}
 
 //        —оздание массива дл€ последующей проверки корректности добавлени€ товара
         String[] productInputArray = new String[3];
@@ -74,7 +77,7 @@ public class ProductsTest extends BaseTest {
         productInputArray[2] = isExotic.toString();
         int arrayLength = productInputArray.length;
 
-        waitingToSee();
+        waitToSee();
 
 //       Ќажатие кнопки "сохранить"
         WebElement btnSave = driver.findElement(By.id("save"));
@@ -84,8 +87,8 @@ public class ProductsTest extends BaseTest {
         explicitWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//tbody")));
 
 //        ѕолучение информации о количестве строк в таблице
-        WebElement table = driver.findElement(By.xpath("//tbody"));
-        int countOfProducts = Integer.parseInt(table.getAttribute("childElementCount"));
+        WebElement tableProducts = driver.findElement(By.xpath("//tbody"));
+        int countOfProducts = Integer.parseInt(tableProducts.getAttribute("childElementCount"));
 
 //        —оздание массива из фактически добавленных в таблицу значений
         String[] productValuesArray = new String[arrayLength];
@@ -100,19 +103,18 @@ public class ProductsTest extends BaseTest {
                 "“овар не был добавлен или добавлен некорректно");
         System.out.println("“овар успешно доваблен");
 
-        waitingToSee();
+        waitToSee();
     }
 
     /**
-     * ћетод усыплени€ потока с целью того, чтобы увидеть как отрабатывает тест.
-     * ƒл€ сокращени€ времени прогонки автотеста можно врем€ усыплени€ потока указать - 0, либо удалить.
+     * ћетод приостановки потока с целью того, чтобы увидеть как отрабатывает тест.
+     * ƒл€ сокращени€ времени прогонки автотеста можно врем€ приостановки потока установить - 0, либо удалить метод.
      */
-    private void waitingToSee() {
+    private void waitToSee() {
         try {
             Thread.sleep(500);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
     }
-
 }
