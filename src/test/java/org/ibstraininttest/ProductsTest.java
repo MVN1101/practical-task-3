@@ -6,35 +6,10 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
-
-public class ProductsTest {
-
-    private WebDriver driver;
-    private WebDriverWait explicitWait;
-
-    @BeforeAll
-    public static void setProperty(){
-        System.setProperty("webdriver.chromedriver.driver", "/src/test/resources/chromedriver.exe");
-    }
-
-    @BeforeEach
-    public void createDriver() {
-
-        driver = new ChromeDriver();
-
-        driver.manage().window().maximize();
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        explicitWait = new WebDriverWait(driver, Duration.ofSeconds(5));
-
-        driver.get("http://localhost:8080");
-
-    }
+public class ProductsTest extends BaseTest {
 
     @ParameterizedTest
     @CsvSource(value = {
@@ -45,7 +20,8 @@ public class ProductsTest {
     })
      void addProductTest(String fruitName, String type, Boolean isExotic) {
 
-
+        WebDriver driver = BaseTest.getDriver();
+        WebDriverWait explicitWait =  BaseTest.getExplicitWait();
 //        Открытие выпадающего списка "Песочница"
         WebElement btnSendBox = driver.findElement(By.id("navbarDropdown"));
         btnSendBox.click();
@@ -126,12 +102,6 @@ public class ProductsTest {
 
         waitingToSee();
     }
-
-    @AfterEach
-    public void closeDriver(){
-        driver.quit();
-    }
-
 
     /**
      * Метод усыпления потока с целью того, чтобы увидеть как отрабатывает тест.

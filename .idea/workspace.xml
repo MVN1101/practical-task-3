@@ -5,9 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bf43b882-1365-4251-b8a2-a72207b59fd4" name="Changes" comment="создание теста">
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/ibstraininttest/ProductsTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/ibstraininttest/BaseTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/ibstraininttest/WebDriverManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/ibstraininttest/WebDriverWaitManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/ibstraininttest/addProductTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/ibstraininttest/ProductsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/ibstraininttest/ProductsTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,7 +103,14 @@
       <option name="project" value="LOCAL" />
       <updated>1723961278907</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="создание теста">
+      <created>1723962705268</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1723962705268</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
