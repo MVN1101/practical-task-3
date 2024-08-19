@@ -25,11 +25,11 @@ public class ProductDBTest {
 
 //        Получение данных из таблицы
         String queryAllFromFood = "SELECT * FROM food";
-        ResultSet resultSetSelectAll = statement.executeQuery(queryAllFromFood);
+        ResultSet resultSet = statement.executeQuery(queryAllFromFood);
 
 //        Создание переменной для определения количества строк в таблице
-        resultSetSelectAll.last();
-        int countOfRows = resultSetSelectAll.getRow();
+        resultSet.last();
+        int countOfRows = resultSet.getRow();
 
 //        Создание и инициализация переменных для команды INSERT
         int id = countOfRows + 1;
@@ -50,33 +50,33 @@ public class ProductDBTest {
         statement.executeUpdate(insert);
 
 //        Повторный запрос всех данных таблицы
-        resultSetSelectAll = statement.executeQuery(queryAllFromFood);
+        resultSet = statement.executeQuery(queryAllFromFood);
 
 //        Получение информации из БД о добавленном товаре
-        resultSetSelectAll.last();
-        int idBD = resultSetSelectAll.getInt("FOOD_ID");
-        String fruitNameBD = resultSetSelectAll.getString("FOOD_NAME");
-        String typeBD = resultSetSelectAll.getString("FOOD_TYPE");
-        int isExoticBD = resultSetSelectAll.getInt("FOOD_EXOTIC");
+        resultSet.last();
+        int idDB = resultSet.getInt("FOOD_ID");
+        String fruitNameDB = resultSet.getString("FOOD_NAME");
+        String typeDB = resultSet.getString("FOOD_TYPE");
+        int isExoticDB = resultSet.getInt("FOOD_EXOTIC");
 
 //        Создание коллекции с информацией о добавленном товаре, полученной из БД
         ArrayList<Object> productAddedList = new ArrayList<>();
-        productAddedList.add(idBD);
-        productAddedList.add(fruitNameBD);
-        productAddedList.add(typeBD);
-        productAddedList.add(isExoticBD);
+        productAddedList.add(idDB);
+        productAddedList.add(fruitNameDB);
+        productAddedList.add(typeDB);
+        productAddedList.add(isExoticDB);
 
 //        Проверка корректности добавления товара
         if (productToBeAddList.equals(productAddedList)) {
             System.out.printf(
                     "Товар (id: %d, Наименование: %s, Тип: %s, Экзотический: %d) был успешно доваблен в БД",
-                    idBD, fruitNameBD, typeBD, isExoticBD);
+                    idDB, fruitNameDB, typeDB, isExoticDB);
         } else {
             throw new SQLException("Товар не был добавлен в БД или добавлен некорректно");
         }
 
 //        Удаление добавленной сторки, закрытие соединения
-        resultSetSelectAll.deleteRow();
+        resultSet.deleteRow();
         connection.close();
     }
 }
