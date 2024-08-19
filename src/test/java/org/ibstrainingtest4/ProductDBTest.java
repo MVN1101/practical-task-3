@@ -6,14 +6,14 @@ import java.util.ArrayList;
 
 /**
  * @author Vikor_Mikhaylov
- * Класс для прогонки теста проверки корректности добавления товара в базу данных (БД)
+ * РљР»Р°СЃСЃ РґР»СЏ РїСЂРѕРіРѕРЅРєРё С‚РµСЃС‚Р° РїСЂРѕРІРµСЂРєРё РєРѕСЂСЂРµРєС‚РЅРѕСЃС‚Рё РґРѕР±Р°РІР»РµРЅРёСЏ С‚РѕРІР°СЂР° РІ Р±Р°Р·Сѓ РґР°РЅРЅС‹С… (Р‘Р”)
  */
 public class ProductDBTest {
 
     @Test
     void addProductDBTest() throws SQLException {
 
-//        Создание соединения
+//        РЎРѕР·РґР°РЅРёРµ СЃРѕРµРґРёРЅРµРЅРёСЏ
         Connection connection = DriverManager.getConnection(
                 "jdbc:h2:tcp://localhost:9092/mem:testdb",
                 "user",
@@ -23,59 +23,59 @@ public class ProductDBTest {
                 ResultSet.TYPE_SCROLL_SENSITIVE,
                 ResultSet.CONCUR_UPDATABLE);
 
-//        Получение данных из таблицы
+//        РџРѕР»СѓС‡РµРЅРёРµ РґР°РЅРЅС‹С… РёР· С‚Р°Р±Р»РёС†С‹
         String queryAllFromFood = "SELECT * FROM food";
         ResultSet resultSetSelectAll = statement.executeQuery(queryAllFromFood);
 
-//        Создание переменной для определения количества строк в таблице
+//        РЎРѕР·РґР°РЅРёРµ РїРµСЂРµРјРµРЅРЅРѕР№ РґР»СЏ РѕРїСЂРµРґРµР»РµРЅРёСЏ РєРѕР»РёС‡РµСЃС‚РІР° СЃС‚СЂРѕРє РІ С‚Р°Р±Р»РёС†Рµ
         resultSetSelectAll.last();
         int countOfRows = resultSetSelectAll.getRow();
 
-//        Создание и инициализация переменных для команды INSERT
+//        РЎРѕР·РґР°РЅРёРµ Рё РёРЅРёС†РёР°Р»РёР·Р°С†РёСЏ РїРµСЂРµРјРµРЅРЅС‹С… РґР»СЏ РєРѕРјР°РЅРґС‹ INSERT
         int id = countOfRows + 1;
-        String productName = "картофель";
+        String productName = "РєР°СЂС‚РѕС„РµР»СЊ";
         String type = "VEGETABLE";
         int isExotic = 0;
 
-//        Создание коллекции с информацией о добавляемом товаре
-//        с целью последующей проверки корректности его добавления в БД
+//        РЎРѕР·РґР°РЅРёРµ РєРѕР»Р»РµРєС†РёРё СЃ РёРЅС„РѕСЂРјР°С†РёРµР№ Рѕ РґРѕР±Р°РІР»СЏРµРјРѕРј С‚РѕРІР°СЂРµ
+//        СЃ С†РµР»СЊСЋ РїРѕСЃР»РµРґСѓСЋС‰РµР№ РїСЂРѕРІРµСЂРєРё РєРѕСЂСЂРµРєС‚РЅРѕСЃС‚Рё РµРіРѕ РґРѕР±Р°РІР»РµРЅРёСЏ РІ Р‘Р”
         ArrayList<Object> productToBeAddList = new ArrayList<>();
         productToBeAddList.add(id);
         productToBeAddList.add(productName);
         productToBeAddList.add(type);
         productToBeAddList.add(isExotic);
 
-//        Выполнение запроса добавления продукта в БД
+//        Р’С‹РїРѕР»РЅРµРЅРёРµ Р·Р°РїСЂРѕСЃР° РґРѕР±Р°РІР»РµРЅРёСЏ РїСЂРѕРґСѓРєС‚Р° РІ Р‘Р”
         String insert = "INSERT INTO food VALUES (" + id + ",'" + productName + "','" + type + "'," + isExotic + ")";
         statement.executeUpdate(insert);
 
-//        Повторный запрос всех данных таблицы
+//        РџРѕРІС‚РѕСЂРЅС‹Р№ Р·Р°РїСЂРѕСЃ РІСЃРµС… РґР°РЅРЅС‹С… С‚Р°Р±Р»РёС†С‹
         resultSetSelectAll = statement.executeQuery(queryAllFromFood);
 
-//        Получение информации из БД о добавленном товаре
+//        РџРѕР»СѓС‡РµРЅРёРµ РёРЅС„РѕСЂРјР°С†РёРё РёР· Р‘Р” Рѕ РґРѕР±Р°РІР»РµРЅРЅРѕРј С‚РѕРІР°СЂРµ
         resultSetSelectAll.last();
         int idBD = resultSetSelectAll.getInt("FOOD_ID");
         String fruitNameBD = resultSetSelectAll.getString("FOOD_NAME");
         String typeBD = resultSetSelectAll.getString("FOOD_TYPE");
         int isExoticBD = resultSetSelectAll.getInt("FOOD_EXOTIC");
 
-//        Создание коллекции с информацией о добавленном товаре, полученной из БД
+//        РЎРѕР·РґР°РЅРёРµ РєРѕР»Р»РµРєС†РёРё СЃ РёРЅС„РѕСЂРјР°С†РёРµР№ Рѕ РґРѕР±Р°РІР»РµРЅРЅРѕРј С‚РѕРІР°СЂРµ, РїРѕР»СѓС‡РµРЅРЅРѕР№ РёР· Р‘Р”
         ArrayList<Object> productAddedList = new ArrayList<>();
         productAddedList.add(idBD);
         productAddedList.add(fruitNameBD);
         productAddedList.add(typeBD);
         productAddedList.add(isExoticBD);
 
-//        Проверка корректности добавления товара
+//        РџСЂРѕРІРµСЂРєР° РєРѕСЂСЂРµРєС‚РЅРѕСЃС‚Рё РґРѕР±Р°РІР»РµРЅРёСЏ С‚РѕРІР°СЂР°
         if (productToBeAddList.equals(productAddedList)) {
             System.out.printf(
-                    "Товар (id: %d, Наименование: %s, Тип: %s, Экзотический: %d) был успешно доваблен в БД",
+                    "РўРѕРІР°СЂ (id: %d, РќР°РёРјРµРЅРѕРІР°РЅРёРµ: %s, РўРёРї: %s, Р­РєР·РѕС‚РёС‡РµСЃРєРёР№: %d) Р±С‹Р» СѓСЃРїРµС€РЅРѕ РґРѕРІР°Р±Р»РµРЅ РІ Р‘Р”",
                     idBD, fruitNameBD, typeBD, isExoticBD);
         } else {
-            throw new SQLException("Товар не был добавлен в БД или добавлен некорректно");
+            throw new SQLException("РўРѕРІР°СЂ РЅРµ Р±С‹Р» РґРѕР±Р°РІР»РµРЅ РІ Р‘Р” РёР»Рё РґРѕР±Р°РІР»РµРЅ РЅРµРєРѕСЂСЂРµРєС‚РЅРѕ");
         }
 
-//        Удаление добавленной сторки, закрытие соединения
+//        РЈРґР°Р»РµРЅРёРµ РґРѕР±Р°РІР»РµРЅРЅРѕР№ СЃС‚РѕСЂРєРё, Р·Р°РєСЂС‹С‚РёРµ СЃРѕРµРґРёРЅРµРЅРёСЏ
         resultSetSelectAll.deleteRow();
         connection.close();
     }
