@@ -1,5 +1,6 @@
 package org.ibstrainingtest4;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import java.sql.*;
 import java.util.ArrayList;
@@ -67,13 +68,8 @@ public class ProductDBTest {
         productAddedList.add(isExoticDB);
 
 //        Проверка корректности добавления товара
-        if (productToBeAddList.equals(productAddedList)) {
-            System.out.printf(
-                    "Товар (id: %d, Наименование: %s, Тип: %s, Экзотический: %d) был успешно доваблен в БД",
-                    idDB, fruitNameDB, typeDB, isExoticDB);
-        } else {
-            throw new SQLException("Товар не был добавлен в БД или добавлен некорректно");
-        }
+        Assertions.assertEquals(productToBeAddList,productAddedList,
+                "Товар не был добавлен в БД или добавлен некорректно");
 
 //        Удаление добавленной сторки, закрытие соединения
         resultSet.deleteRow();

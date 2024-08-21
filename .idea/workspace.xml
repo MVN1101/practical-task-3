@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bf43b882-1365-4251-b8a2-a72207b59fd4" name="Changes" comment="решена проблема с кодировкой">
+    <list default="true" id="bf43b882-1365-4251-b8a2-a72207b59fd4" name="Changes" comment="рефакторинг (названия переменных)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/ibstrainingtest4/ProductDBTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/ibstrainingtest4/ProductDBTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/org/ibstraininttest/BaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/ibstrainingtest3/BaseTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/org/ibstraininttest/ProductsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/ibstrainingtest3/ProductsTest.java" afterDir="false" />
     </list>
@@ -48,7 +49,7 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.editor.code.editing"
+    "settings.editor.selected.configurable": "configurable.group.editor"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -172,7 +173,14 @@
       <option name="project" value="LOCAL" />
       <updated>1724096002982</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="рефакторинг (названия переменных)">
+      <created>1724096617734</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1724096617734</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -206,6 +214,7 @@
     <MESSAGE value="удаление папки Main" />
     <MESSAGE value="добавление зависимости h2database" />
     <MESSAGE value="решена проблема с кодировкой" />
-    <option name="LAST_COMMIT_MESSAGE" value="решена проблема с кодировкой" />
+    <MESSAGE value="рефакторинг (названия переменных)" />
+    <option name="LAST_COMMIT_MESSAGE" value="рефакторинг (названия переменных)" />
   </component>
 </project>
